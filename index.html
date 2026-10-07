@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .coluna {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 45%;
+        }
+        .label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .termos {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .termos input {
+            margin-right: 10px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #erros {
+            color: red;
+            margin-top: 10px;
+        }
+        #saida p {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="coluna">
+        <h2>Cadastro</h2>
+        <form id="cadastroForm" novalidate>
+            <label for="nome">Nome Completo</label>
+            <input type="text" id="nome" placeholder="Digite seu nome completo" required>
+
+            <label for="email">E-mail Institucional</label>
+            <input type="email" id="email" placeholder="seuemail@escola.com" required>
+
+            <label for="senha">Senha de Acesso</label>
+            <input type="password" id="senha" minlength="6" placeholder="Mínimo de 6 caracteres" required>
+
+            <label for="confirmaSenha">Confirmação de Senha</label>
+            <input type="password" id="confirmaSenha" placeholder="Repita a senha" required>
+
+            <label for="perfil">Perfil Técnico</label>
+            <select id="perfil" required>
+                <option value="">Selecione...</option>
+                <option value="Redes">Redes</option>
+                <option value="Desenvolvimento">Desenvolvimento</option>
+                <option value="Suporte">Suporte</option>
+            </select>
+
+            <label class="termos">
+                <input type="checkbox" id="termos" required>
+                Aceito os termos de uso
+            </label>
+
+            <button type="submit">Cadastrar</button>
+            <div id="erros"></div>
+        </form>
+    </div>
+
+    <div class="coluna">
+        <h2>Dados Cadastrados</h2>
+        <div id="saida">
+            <p><strong>Nome:</strong> <span id="saidaNome">-</span></p>
+            <p><strong>E-mail:</strong> <span id="saidaEmail">-</span></p>
+            <p><strong>Perfil:</strong> <span id="saidaPerfil">-</span></p>
+        </div>
+    </div>
+</div>
+<script>
+    const form = document.getElementById("cadastroForm");
+    const campoNome = document.getElementById("nome");
+    const campoEmail = document.getElementById("email");
+    const campoSenha = document.getElementById("senha");
+    const campoConfirma = document.getElementById("confirmaSenha");
+    const campoPerfil = document.getElementById("perfil");
+    const campoTermos = document.getElementById("termos");
+    const divErros = document.getElementById("erros");
+
+    form.addEventListener("submit", function (evento) {
+        evento.preventDefault();
+
+        const nome = campoNome.value.trim();
+        const email = campoEmail.value.trim();
+        const senha = campoSenha.value;
+        const confirma = campoConfirma.value;
+        const perfil = campoPerfil.value;
+
+        const erros = [];
+
+        if (nome === "") {
+            erros.push("Preencha o nome completo.");
+        }
+
+        if (email === "" || !campoEmail.checkValidity()) {
+            erros.push("Digite um e-mail válido.");
+        }
+
+        if (senha.length < 6) {
+            erros.push("A senha precisa ter no mínimo 6 caracteres.");
+        }
+
+        if (senha !== confirma) {
+            erros.push("As senhas não conferem.");
+        }
+
+        if (perfil === "") {
+            erros.push("Selecione um perfil técnico.");
+        }
+
+        if (!campoTermos.checked) {
+            erros.push("Você precisa aceitar os termos de uso.");
+        }
+
+        if (erros.length > 0) {
+            divErros.innerHTML = erros.join("<br>");
+            return;
+        }
+
+        divErros.innerHTML = "";
+        document.getElementById("saidaNome").innerText = nome;
+        document.getElementById("saidaEmail").innerText = email;
+        document.getElementById("saidaPerfil").innerText = perfil;
+        form.reset();
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+<script>
+function mostrarMensagem() {
+    console.log("Bem-vindo ao estudo de funções em JavaScript!");
+}
+mostrarMensagem();
+
+function somaSimples(a, b) {
+    return a + b;
+}
+console.log(somaSimples(5, 3));
+
+function imprimirnome(nome) {
+    console.log("Olá, " + nome + "!");
+}
+imprimirnome("Alice");
+
+function quadrado(numero) {
+    return numero * numero;
+}
+console.log(quadrado(4));
+
+function converterparaCelsius(fahrenheit) {
+    return (fahrenheit - 32) * 5 / 9;
+}
+console.log(converterparaCelsius(68));
+
+function concatenaPalavras(palavra1, palavra2) {
+    return palavra1 + " " + palavra2;
+}
+console.log(concatenaPalavras("Olá", "Mundo"));
+
+function calcularMedia(nota1, nota2, nota3) {
+    return (nota1 + nota2 + nota3) / 3;
+}
+console.log(calcularMedia(8, 7, 9));
+
+function desconto(preco, percentual) {
+    return preco - (preco * percentual / 100);
+}
+console.log(desconto(100, 20));
+
+function saudacaoPersonalizada(nome, idade) {
+    return "Olá, " + nome + "! Você tem " + idade + " anos.";
+}
+console.log(saudacaoPersonalizada("leviatan", 25));
+
+let multiplicar = function(a, b) {
+    return a * b;
+};
+console.log("Multiplicação: " + multiplicar(5, 3));
+
+let dividir = function(a, b) {
+    return a / b;
+};
+console.log("Divisão: " + dividir(10, 2));
+
+
+    const dobro = (numero) => numero * 2;
+    console.log("Dobro de 7:", dobro(7));
+
+    const ehPar = (numero) => numero % 2 === 0;
+    console.log("4 é par?", ehPar(4));
+    console.log("7 é par?", ehPar(7));
+
+    function calculadora(a, b) {
+        function soma(x, y) {
+            return x + y;
+        }
+
+        function subtrair(x, y) {
+            return x - y;
+        }
+
+        console.log("Soma:", soma(a, b));
+        console.log("Subtração:", subtrair(a, b));
+    }
+    calculadora(10, 3);
+
+    function operacoesAvancadas(a, b) {
+        function produto(x, y) {
+            return x * y;
+        }
+
+        function potencia(x, y) {
+            return x ** y;
+        }
+
+        return {
+            produto: produto(a, b),
+            potencia: potencia(a, b)
+        };
+}
+console.log(operacoesAvancadas(2, 3));
+</script>
+
+</body>
+</html>
